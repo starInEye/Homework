@@ -1,0 +1,206 @@
+package SoftwareProject;
+
+public class SoftwareProject {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Software cp=new Software();
+		cp.titleQuantify();
+		cp.selectCompute();
+		cp.calculate();		
+	}
+}
+
+
+package SoftwareProject;
+//num1,num2存储产生的随机数
+//titleNumber存储输入的题目数
+//求和
+//正负数计算选择
+//用于switch的选择
+public abstract class SoftwareHomeworkAbstract {
+		int num1;
+		int num2;		
+		int titleNumber;	
+		int sum;
+		int select;
+		int chara;
+		int change;
+		
+		public abstract int titleQuantify();
+		public abstract void selectCompute();
+		public abstract void calculate();	
+}
+
+package SoftwareProject;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import org.junit.Test;
+
+class Software extends SoftwareHomeworkAbstract
+{
+	public Software()
+	{
+		super.sum=0;
+		super.chara=0;
+		super.change=1;
+		
+	}
+	
+	//产生题目的数量
+	public int titleQuantify()
+	{
+		/*System.out.println("请输入题目的数量：");
+		Scanner scanner=new Scanner(System.in);*/
+		
+		try
+			{
+				System.out.println("请输入题目的数量：");
+				Scanner scanner=new Scanner(System.in);
+				titleNumber=scanner.nextInt();	
+				return change=1;
+			}
+			
+			catch(InputMismatchException e)
+			{
+				System.out.print("请从新输入题目的数目，数目为整数,");
+				System.out.println("请输入题目的数量：");
+				Scanner scanner=new Scanner(System.in);
+				titleNumber=scanner.nextInt();	
+				return change=2;
+			}
+		
+		
+		
+		
+		/*if(titleNumber<0)
+		{
+			System.out.println("请在次输入一个题目的数量，题目数量为正整数：");
+			titleNumber=scanner.nextInt();
+			
+		}
+		*/
+	}
+	
+	//计算选择
+	public void selectCompute()
+	{
+		if(change==1)
+		{
+			try
+			{
+				System.out.println("请选择：1.没有负数，2.有负数");
+				Scanner scanner=new Scanner(System.in);
+				select=scanner.nextInt();
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("请选择：1.没有负数，2.有负数");
+				Scanner scanner=new Scanner(System.in);
+				select=scanner.nextInt();
+			}
+			
+		}
+		else if(change==2)
+		{
+			titleQuantify();
+			try
+			{
+				System.out.println("请选择：1.没有负数，2.有负数");
+				Scanner scanner=new Scanner(System.in);
+				select=scanner.nextInt();
+			}
+			catch(InputMismatchException e)
+			{
+				System.out.println("请选择：1.没有负数，2.有负数");
+				Scanner scanner=new Scanner(System.in);
+				select=scanner.nextInt();
+			}
+		}
+			
+	}
+	
+
+	//计算
+	public void calculate()
+	{
+		if(select==1)
+		{
+			for(int i=0;i<titleNumber;i++) 
+			{
+				num1=(int)(Math.random()*100);
+				num2=(int)(Math.random()*100);
+				chara=(int)(Math.random()*4+1);
+				
+				switch(chara)
+				{
+				case 0:
+					sum=num1+num2;
+					System.out.println(num1+"+"+num2+"="+sum);
+					break;
+				case 1:
+					sum=num1-num2;
+					System.out.println(num1+"-"+num2+"="+sum);
+					break;
+				case 2:
+					sum=num1*num2;
+					System.out.println(num1+"*"+num2+"="+sum);
+					break;
+				case 3:
+					sum=num1/num2;
+					System.out.println(num1+"/"+num2+"="+sum);
+					break;
+				
+				}
+				
+			}
+		}
+		
+		if(select==2)
+		{
+			for(int i=0;i<titleNumber;i++) 
+			{
+				num1=(int)(Math.random()*100);
+				num2=(int)(Math.random()*100);
+				chara=(int)(Math.random()*4+1);
+				
+				switch(chara)
+				{
+				case 0:
+					sum=-num1-num2;
+					System.out.println("-"+num1+"+"+"(-)"+num2+"="+sum);
+					break;
+				case 1:
+					sum=-num1+num2;
+					System.out.println("-"+num1+"-"+"(-)"+num2+"="+sum);
+					break;
+				case 2:
+					sum=-num1*(-num2);
+					System.out.println("-"+num1+"*"+"(-)"+num2+"="+sum);
+					break;
+				case 3:
+					sum=-num1/(-num2);
+					System.out.println("-"+num1+"/"+"(-)"+num2+"="+sum);
+					break;
+				
+				}
+				
+			}
+		}
+	}
+	
+	/*//单元测试
+	@Test
+	public void tests() 
+	{
+		Software cp=new Software();
+		cp.titleQuantify();
+		cp.selectCompute();
+		cp.calculate();
+	}*/
+
+}
+
+
+
